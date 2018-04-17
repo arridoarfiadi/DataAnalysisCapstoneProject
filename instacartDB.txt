@@ -65,13 +65,26 @@ ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA LOCAL INFILE '/Users/arridoarfiadi/Downloads/DATA/p.csv' 
-INTO TABLE Departments 
+LOAD DATA LOCAL INFILE '/Users/arridoarfiadi/Downloads/DATA/products.csv' 
+INTO TABLE Products 
 FIELDS TERMINATED BY ',' 
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
+LOAD DATA LOCAL INFILE '/Users/arridoarfiadi/Downloads/DATA/order_products__train.csv' 
+INTO TABLE Order_Products 
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+LOAD DATA LOCAL INFILE '/Users/arridoarfiadi/Downloads/DATA/order_products__prior.csv' 
+INTO TABLE Order_Products 
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
 
 
 
