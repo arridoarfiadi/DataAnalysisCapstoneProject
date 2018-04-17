@@ -32,9 +32,7 @@ product_id INT NOT NULL,
 product_name VARCHAR(255) NOT NULL,
 aisle_id INT NOT NULL,
 department_id INT NOT NULL,
-PRIMARY KEY (product_id),
-FOREIGN KEY (aisle_id) REFERENCES Aisles(aisle_id),
-FOREIGN KEY (department_id) REFERENCES Departments(department_id)
+PRIMARY KEY (product_id)
 );
 
 CREATE TABLE Order_Products(
@@ -85,6 +83,8 @@ FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
+
+
 
 
 
