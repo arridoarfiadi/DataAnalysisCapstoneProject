@@ -1,6 +1,7 @@
 Create database Instacart;
 use Instacart;
 
+SET FOREIGN_KEY_CHECKS = 0;
 
 CREATE TABLE Orders(
 order_id INT NOT NULL,
@@ -32,7 +33,9 @@ product_id INT NOT NULL,
 product_name VARCHAR(255) NOT NULL,
 aisle_id INT NOT NULL,
 department_id INT NOT NULL,
-PRIMARY KEY (product_id)
+PRIMARY KEY (product_id),
+FOREIGN KEY (aisle_id) REFERENCES Aisles(aisle_id),
+FOREIGN KEY (department_id) REFERENCES Departments(department_id)
 );
 
 CREATE TABLE Order_Products(
@@ -40,6 +43,8 @@ order_id INT NOT NULL,
 product_id INT NOT NULL,
 add_to_cart_order INT NOT NULL,
 reordered TINYINT NOT NULL,
+FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+FOREIGN KEY (product_id) REFERENCES Products(product_id)
 );
 
 LOAD DATA LOCAL INFILE '/Users/arridoarfiadi/Downloads/DATA/Orders.csv' 
@@ -83,6 +88,9 @@ FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
+
+
+
 
 
 
