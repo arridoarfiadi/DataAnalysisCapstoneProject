@@ -1,13 +1,17 @@
+import java.io.FileWriter;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 import com.mysql.jdbc.Connection;
 
 public class main {
     public static void main(String[] args){
-        for (int i=1; i < 500; i++){
+        for (int i=1; i <= 49688; i++){
             query(i);
         }
 
@@ -29,14 +33,25 @@ public class main {
             myResult = myStatement.executeQuery();
             ResultSetMetaData myResultMeta = myResult.getMetaData();
             int columnsNumber = myResultMeta.getColumnCount();
+            FileWriter pw = new FileWriter("amountBought.csv", true);
+            StringBuilder sb = new StringBuilder();
             while (myResult.next()) {
                 for (int i = 1; i <= columnsNumber; i++) {
-                    if (i > 1) System.out.print(",  ");
+                    if (i > 1){
+                        System.out.print("/  ");
+                        sb.append('/');
+                    }
+
                     String columnValue = myResult.getString(i);
                     System.out.print(columnValue);
+                    sb.append(columnValue);
+
                 }
                 System.out.println("");
             }
+            sb.append('\n');
+            pw.write(sb.toString());
+            pw.close();
         }
         catch (Exception e){
             System.out.println("DB not connected");
@@ -44,5 +59,6 @@ public class main {
         }
     }
     }
+
 
 
