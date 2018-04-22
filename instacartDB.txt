@@ -43,6 +43,7 @@ order_id INT NOT NULL,
 product_id INT NOT NULL,
 add_to_cart_order INT NOT NULL,
 reordered TINYINT NOT NULL,
+PRIMARY KEY (order_id, product_id),
 FOREIGN KEY (order_id) REFERENCES Orders(order_id),
 FOREIGN KEY (product_id) REFERENCES Products(product_id)
 );
@@ -88,10 +89,6 @@ FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
-
-
-
-
 
 
 

@@ -11,24 +11,37 @@ import com.mysql.jdbc.Connection;
 
 public class main {
     public static void main(String[] args){
-        for (int i=1; i <= 49688; i++){
-            query(i);
+        Connection conn;
+        String host2 = "jdbc:mysql://instacart.cbvhsm9drvzt.us-east-2.rds.amazonaws.com:3306/Instacart";
+        String host="jdbc:mysql://localhost:3306/Instacart";
+        String username2 =  "uwb_instacart";
+        String password2= "1g*MIh$a3k";
+        String username =  "root";
+        String password = "root";
+        try{
+            conn = (Connection) DriverManager.getConnection(host, username, password);
+            for (int i=1; i <= 49688; i++){
+                query(i, conn);
+            }
+        }
+        catch (Exception e) {
+            System.out.println("DB not connected");
         }
 
 
+
+
     }
-    public static void query(int product_id){
+    public static void query(int product_id, Connection conn2){
         PreparedStatement myStatement = null;
 
         ResultSet myResult =null;
-        Connection conn;
-        String host = "jdbc:mysql://instacart.cbvhsm9drvzt.us-east-2.rds.amazonaws.com:3306/Instacart";
-        String username =  "uwb_instacart";
-        String password= "1g*MIh$a3k";
-        try {
-            conn = (Connection) DriverManager.getConnection(host, username, password);
 
-            myStatement = conn.prepareStatement("select d.department_name,p.product_name, sum(op.add_to_cart_order) from  Products p, Order_Products op, Departments d where op.product_id = p.product_id and d.department_id = p.department_id and p.product_id = ?;");
+
+        try {
+
+
+            myStatement = conn2.prepareStatement("select d.department_name,p.product_name, sum(op.add_to_cart_order) from  Products p, Order_Products op, Departments d where op.product_id = p.product_id and d.department_id = p.department_id and p.product_id = ?;");
             myStatement.setInt(1, product_id);
             myResult = myStatement.executeQuery();
             ResultSetMetaData myResultMeta = myResult.getMetaData();
@@ -59,6 +72,8 @@ public class main {
         }
     }
     }
+
+
 
 
 
