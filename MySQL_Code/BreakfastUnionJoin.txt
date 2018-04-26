@@ -51,3 +51,27 @@ from CoffeeEggsFrozenB cef right JOIN BreakfastBarsPastries bbp on cef.OrderID =
 union
 select cef.OrderID OrderID, ifnull(cef.Coffee, 0) Coffee, ifnull(cef.Eggs, 0) Eggs,  ifnull(cef.FrozenB, 0) FrozenB ,  ifnull(bbp.amount, 0) BBarsPastries
 from CoffeeEggsFrozenB cef left JOIN BreakfastBarsPastries bbp on cef.OrderID = bbp.OrderID;
+
+create View FJuiceProtein (OrderID, FrozenJuice, Protein) as
+select p.OrderID OrderID, ifnull(fj.amount, 0) FrozenJuice, ifnull(p.amount, 0) Protein from FrozenJuice fj right JOIN proteinmealreplacement p on fj.OrderID = p.OrderID
+union
+select fj.OrderID OrderID, ifnull(fj.amount, 0) FrozenJuice, ifnull(p.amount, 0) Protein from FrozenJuice fj left JOIN proteinmealreplacement p on fj.OrderID = p.OrderID;
+
+create View FJuiceProteinFruits (OrderID, FrozenJuice, Protein, Fruits) as
+select ff.OrderID OrderID, ifnull(fp.FrozenJuice, 0) FrozenJuice, ifnull(fp.Protein, 0) Protein,  ifnull(ff.amount, 0) Fruits from FJuiceProtein fp right JOIN FreshFuice ff on fp.OrderID = ff.OrderID
+union
+select fp.OrderID OrderID, ifnull(fp.FrozenJuice, 0) FrozenJuice, ifnull(fp.Protein, 0) Protein,  ifnull(ff.amount, 0) Fruits from FJuiceProtein fp left JOIN FreshFuice ff on fp.OrderID = ff.OrderID;
+
+create View breakfastcorr4 (OrderID, FrozenJuice, Protein, Fruits, Granola) as
+select g.OrderID OrderID, ifnull(fp.FrozenJuice, 0) FrozenJuice, ifnull(fp.Protein, 0) Protein,ifnull(fp.Fruits, 0) Fruits,  ifnull(g.amount, 0) Granola from FJuiceProteinFruits fp right JOIN Granola g on fp.OrderID = g.OrderID
+union
+select fp.OrderID OrderID, ifnull(fp.FrozenJuice, 0) FrozenJuice, ifnull(fp.Protein, 0) Protein,ifnull(fp.Fruits, 0) Fruits,  ifnull(g.amount, 0) Granola from FJuiceProteinFruits fp left JOIN Granola g on fp.OrderID = g.OrderID;
+
+create view breakfastCombine1 (OrderID,Cereal,Milk,Yogurt, Juice,Bread, BBakery,Butter, Spreads) as
+select bc2.OrderID OrderID, ifnull(bc1.Cereal_Amount, 0) Cereal, ifnull(bc1.Milk_Amount, 0) Milk, ifnull(bc1.Yogurt_Amount, 0) Yogurt,  ifnull(bc1.Juice_Amount, 0) Juice,
+ifnull(bc2.Bread, 0) Bread, ifnull(bc2.BBakery, 0) BBakery, ifnull(bc2.Butter, 0) Butter,  ifnull(bc2.Spreads, 0) Spreads
+from breakfastcorr bc1 right JOIN breadbbakerybutterspreads bc2 on bc1.OrderID = bc2.OrderID
+union
+select bc1.OrderID OrderID, ifnull(bc1.Cereal_Amount, 0) Cereal, ifnull(bc1.Milk_Amount, 0) Milk, ifnull(bc1.Yogurt_Amount, 0) Yogurt,  ifnull(bc1.Juice_Amount, 0) Juice,
+ifnull(bc2.Bread, 0) Bread, ifnull(bc2.BBakery, 0) BBakery, ifnull(bc2.Butter, 0) Butter,  ifnull(bc2.Spreads, 0) Spreads
+from breakfastcorr bc1 left JOIN breadbbakerybutterspreads bc2 on bc1.OrderID = bc2.OrderID;
