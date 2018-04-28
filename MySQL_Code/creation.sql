@@ -26,7 +26,6 @@ aisle_name VARCHAR(255) NOT NULL,
 PRIMARY KEY (aisle_id)
 );
 
-
 CREATE TABLE Products(
 product_id INT NOT NULL,
 product_name VARCHAR(255) NOT NULL,
