@@ -14,7 +14,6 @@ days_since_prior_order INT,
 PRIMARY KEY (order_id)
 );
 
-
 CREATE TABLE Departments(
 department_id INT NOT NULL,
 department_name VARCHAR(50) NOT NULL,
