@@ -1,17 +1,7 @@
-
-# coding: utf-8
-
-# In[24]:
-
-
 import pandas as pd 
 
 breakfast = pd.read_csv("breakfastComplete.csv", index_col=0)
-breakfast
+breakfast #displays the data 
 
-
-# In[21]:
-
-
-breakfast.corr()
+breakfast.corr() #correlation martrix of breakfast items
 
