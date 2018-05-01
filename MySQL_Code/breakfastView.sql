@@ -36,7 +36,7 @@ where op.product_id = p.product_id and p.aisle_id in (select aisle_id from Aisle
 
 create view ProteinMealReplacement (OrderID, Product, Amount) as
 select op.order_id OrderID, p.product_name Product, op.add_to_cart_order Amount from Order_Products op, Products p
-where op.product_id = p.product_id and p.aisle_id in (select aisle_id from Aisles where aisle_name like "protein meal replacement");
+where op.product_id = p.product_id and p.aisle_id in (select aisle_id from Aisles where aisle_name like "protein meal replacements");
 
 create view FreshFruits (OrderID, Product, Amount) as
 select op.order_id OrderID, p.product_name Product, op.add_to_cart_order Amount from Order_Products op, Products p
@@ -61,3 +61,28 @@ where op.product_id = p.product_id and p.aisle_id in (select aisle_id from Aisle
 create view Juice (OrderID, Product, Amount) as
 select op.order_id OrderID, p.product_name Product, op.add_to_cart_order Amount from Order_Products op, Products p
 where op.product_id = p.product_id and p.aisle_id in (select aisle_id from Aisles where aisle_name like "Juice");
+
+
+create view OatmealPancakes (OrderID, Product, Amount) as
+select op.order_id OrderID, p.product_name Product, op.add_to_cart_order Amount from Order_Products op, Products p
+where op.product_id = p.product_id and p.aisle_id in (select aisle_id from Aisles where aisle_name like "hot cereal%");
+
+create view SyrupHoney (OrderID, Product, Amount) as
+select op.order_id OrderID, p.product_name Product, op.add_to_cart_order Amount from Order_Products op, Products p
+where op.product_id = p.product_id and p.aisle_id in (select aisle_id from Aisles where aisle_name like "honeys%");
+
+create view GranolaBars (OrderID, Product, Amount) as
+select op.order_id OrderID, p.product_name Product, op.add_to_cart_order Amount from Order_Products op, Products p
+where op.product_id = p.product_id and p.aisle_id in (select aisle_id from Aisles where aisle_name like "energy granola%");
+
+create view NutsSeeds (OrderID, Product, Amount) as
+select op.order_id OrderID, p.product_name Product, op.add_to_cart_order Amount from Order_Products op, Products p
+where op.product_id = p.product_id and p.aisle_id in (select aisle_id from Aisles where aisle_name like "nuts seeds%");
+
+create view BaconSausage (OrderID, Product, Amount) as
+select op.order_id OrderID, p.product_name Product, op.add_to_cart_order Amount from Order_Products op, Products p
+where op.product_id = p.product_id and p.aisle_id in (select aisle_id from Aisles where aisle_name like "hot dogs%");
+
+create view LactoseFree (OrderID, Product, Amount) as
+select op.order_id OrderID, p.product_name Product, op.add_to_cart_order Amount from Order_Products op, Products p
+where op.product_id = p.product_id and p.aisle_id in (select aisle_id from Aisles where aisle_name like "soy lactosefree");
