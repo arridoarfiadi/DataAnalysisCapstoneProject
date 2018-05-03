@@ -60,7 +60,7 @@ where op.product_id = p.product_id and p.aisle_id in (select aisle_id from Aisle
 
 create view Juice (OrderID, Product, Amount) as
 select op.order_id OrderID, p.product_name Product, op.add_to_cart_order Amount from Order_Products op, Products p
-where op.product_id = p.product_id and p.aisle_id in (select aisle_id from Aisles where aisle_name like "Juice");
+where op.product_id = p.product_id and p.aisle_id in (select aisle_id from Aisles where aisle_name like "Juice Nectars");
 
 
 create view OatmealPancakes (OrderID, Product, Amount) as
@@ -86,3 +86,12 @@ where op.product_id = p.product_id and p.aisle_id in (select aisle_id from Aisle
 create view LactoseFree (OrderID, Product, Amount) as
 select op.order_id OrderID, p.product_name Product, op.add_to_cart_order Amount from Order_Products op, Products p
 where op.product_id = p.product_id and p.aisle_id in (select aisle_id from Aisles where aisle_name like "soy lactosefree");
+
+
+create view Creamers (OrderID, Product, Amount) as
+select op.order_id OrderID, p.product_name Product, op.add_to_cart_order Amount from Order_Products op, Products p
+where op.product_id = p.product_id and p.aisle_id in (select aisle_id from Aisles where aisle_name like "cream");
+
+create view Tea (OrderID, Product, Amount) as
+select op.order_id OrderID, p.product_name Product, op.add_to_cart_order Amount from Order_Products op, Products p
+where op.product_id = p.product_id and p.aisle_id in (select aisle_id from Aisles where aisle_name like "Tea");

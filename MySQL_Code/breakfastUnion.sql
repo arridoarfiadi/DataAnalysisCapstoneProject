@@ -75,3 +75,33 @@ union
 select bc1.OrderID OrderID, ifnull(bc1.Cereal_Amount, 0) Cereal, ifnull(bc1.Milk_Amount, 0) Milk, ifnull(bc1.Yogurt_Amount, 0) Yogurt,  ifnull(bc1.Juice_Amount, 0) Juice,
 ifnull(bc2.Bread, 0) Bread, ifnull(bc2.BBakery, 0) BBakery, ifnull(bc2.Butter, 0) Butter,  ifnull(bc2.Spreads, 0) Spreads
 from breakfastcorr bc1 left JOIN breadbbakerybutterspreads bc2 on bc1.OrderID = bc2.OrderID;
+
+create View extra1 (OrderID, OatmealPancakes, syruphoney) as
+select p.OrderID OrderID, ifnull(fj.amount, 0) OatmealPancakes, ifnull(p.amount, 0) SyrupHoney from oatmealPancakes fj right JOIN syruphoney p on fj.OrderID = p.OrderID
+union
+select fj.OrderID OrderID, ifnull(fj.amount, 0) OatmealPancakes, ifnull(p.amount, 0) SyrupHoney from OatmealPancakes fj left JOIN syruphoney p on fj.OrderID = p.OrderID;
+
+create View extra2 (OrderID, OatmealPancakes, SyrupHoney, GranolaBars) as
+select ff.OrderID OrderID, ifnull(fp.OatmealPancakes, 0) OatmealPancakes, ifnull(fp.SyrupHoney, 0) SyrupHoney,  ifnull(ff.amount, 0) GranolaBars from extra1 fp right JOIN GranolaBars ff on fp.OrderID = ff.OrderID
+union
+select fp.OrderID OrderID, ifnull(fp.OatmealPancakes, 0) OatmealPancakes, ifnull(fp.SyrupHoney, 0) SyrupHoney,  ifnull(ff.amount, 0) GranolaBars from extra1 fp left JOIN GranolaBars ff on fp.OrderID = ff.OrderID;
+
+create View extra3 (OrderID, OatmealPancakes, SyrupHoney, GranolaBars, NutsSeeds) as
+select g.OrderID OrderID, ifnull(fp.OatmealPancakes, 0) OatmealPancakes, ifnull(fp.SyrupHoney, 0) SyrupHoney,ifnull(fp.GranolaBars, 0) GranolaBars,  ifnull(g.amount, 0) NutsSeeds from extra2 fp right JOIN NutsSeeds g on fp.OrderID = g.OrderID
+union
+select fp.OrderID OrderID, ifnull(fp.OatmealPancakes, 0) OatmealPancakes, ifnull(fp.SyrupHoney, 0) SyrupHoney,ifnull(fp.GranolaBars, 0) GranolaBars,  ifnull(g.amount, 0) NutsSeeds from extra2 fp left JOIN NutsSeeds g on fp.OrderID = g.OrderID;
+
+create View CreamersCreamCheese (OrderID, Creamers, CreamCheese) as
+select bb.OrderID OrderID, ifnull(b.amount, 0) Creamers, ifnull(bb.amount, 0) CreamCheese from Creamers b right JOIN CreamCheese bb on b.OrderID = bb.OrderID
+union
+select b.OrderID OrderID, ifnull(b.amount, 0) Creamers, ifnull(bb.amount, 0) CreamCheese from Creamers b left JOIN CreamCheese bb on b.OrderID = bb.OrderID;
+
+create View CreamersCreamCheeseTea (OrderID, Creamers, CreamCheese, Tea) as
+select b.OrderID OrderID, ifnull(bb.Creamers, 0) Creamers, ifnull(bb.CreamCheese, 0) CreamCheese, ifnull(b.amount, 0) Tea from CreamersCreamCheese bb right JOIN Tea b on bb.OrderID = b.OrderID
+union
+select bb.OrderID OrderID, ifnull(bb.Creamers, 0) Creamers, ifnull(bb.CreamCheese, 0) CreamCheese, ifnull(b.amount, 0) Tea from CreamersCreamCheese bb left JOIN Tea b on bb.OrderID = b.OrderID;
+
+create View BaconSausageLactoseFree (OrderID, BaconSausage, LactoseFree) as
+select e.OrderID OrderID, ifnull(c.amount, 0) BaconSausage, ifnull(e.amount, 0) LactoseFree from BaconSausage c right JOIN LactoseFree e on c.OrderID = e.OrderID
+union
+select c.OrderID OrderID, ifnull(c.amount, 0) BaconSausage, ifnull(e.amount, 0) LactoseFree from BaconSausage c left JOIN LactoseFree e on c.OrderID = e.OrderID;

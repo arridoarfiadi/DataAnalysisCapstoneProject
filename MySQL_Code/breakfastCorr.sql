@@ -144,6 +144,35 @@ ifnull(sum(c1.Butter),0) Butter,ifnull(sum(c1.Spreads) ,0) Spreads, ifnull(sum(c
 ifnull(sum(c2.FrozenJuice),0) FrozenJuice,ifnull(sum(c2.protein),0) Protein, ifnull(sum(c2.fruits),0) Fruits,ifnull(sum(c2.granola) ,0) Granola
 FROM breakfastcorr1and2 c1 right join breakfastcorr3and4 c2 on c1.OrderID = c2.OrderID group by OrderID
 
+CREATE TABLE breakfast16(
+OrderID INT NOT NULL,
+Cereal INT NOT NULL,
+Milk INT NOT NULL,
+Yogurt INT NOT NULL,
+Juice INT NOT NULL,
+Bread INT NOT NULL,
+BBakery INT NOT NULL,
+Butter INT NOT NULL,
+Spreads INT NOT NULL,
+Coffee INT NOT NULL,
+Eggs INT NOT NULL,
+FrozenB INT NOT NULL,
+BBarsPastries INT NOT NULL,
+FrozenJuice INT NOT NULL,
+Protein INT NOT NULL,
+Fruits INT NOT NULL,
+Granola INT NOT NULL,
+Foreign Key (OrderID) references OrderIDTable (OrderID)
+);
+
+LOAD DATA LOCAL INFILE '/Users/arridoarfiadi/Instacart_DataAnalytics/correlation/breakfast16.csv'
+INTO TABLE breakfast16
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+
 CREATE TABLE extra1(
 OrderID INT NOT NULL,
 OatmealPancakes INT NOT NULL,
@@ -175,12 +204,12 @@ ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-SELECT c1.OrderID, ifnull(sum(c1.OatmealPancakes),0), ifnull(sum(c1.SyrupHoney),0), ifnull(sum(c1.GranolaBars),0), ifnull(sum(c1.NutsSeeds),0),ifnull(sum(c2.Creamers),0),ifnull(sum(c2.CreamCheese),0),
-ifnull(sum(c2.Tea),0)
+SELECT c1.OrderID, ifnull(sum(distinct(c1.OatmealPancakes)),0), ifnull(sum(distinct(c1.SyrupHoney)),0), ifnull(sum(distinct(c1.GranolaBars)),0), ifnull(sum(distinct(c1.NutsSeeds)),0),ifnull(sum(distinct(c1.Creamers)),0),ifnull(sum(distinct(c1.CreamCheese)),0),
+ifnull(sum(distinct(c1.Tea)),0)
 FROM extra1 c1 left join extra2 c2 on c1.OrderID = c2.OrderID group by OrderID
 union
-SELECT c2.OrderID, ifnull(sum(c1.OatmealPancakes),0), ifnull(sum(c1.SyrupHoney),0), ifnull(sum(c1.GranolaBars),0), ifnull(sum(c1.NutsSeeds),0),ifnull(sum(c2.Creamers),0),ifnull(sum(c2.CreamCheese),0),
-ifnull(sum(c2.Tea),0)
+SELECT c2.OrderID, ifnull(sum(distinct(c1.OatmealPancakes)),0), ifnull(sum(distinct(c1.SyrupHoney)),0), ifnull(sum(distinct(c1.GranolaBars)),0), ifnull(sum(distinct(c1.NutsSeeds)),0),ifnull(sum(distinct(c1.Creamers)),0),ifnull(sum(distinct(c1.CreamCheese)),0),
+ifnull(sum(distinct(c1.Tea)),0)
 FROM extra1 c1 right join extra2 c2 on c1.OrderID = c2.OrderID group by OrderID;
 
 CREATE TABLE extra3(
@@ -201,33 +230,7 @@ ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-CREATE TABLE breakfast16(
-OrderID INT NOT NULL,
-Cereal INT NOT NULL,
-Milk INT NOT NULL,
-Yogurt INT NOT NULL,
-Juice INT NOT NULL,
-Bread INT NOT NULL,
-BBakery INT NOT NULL,
-Butter INT NOT NULL,
-Spreads INT NOT NULL,
-Coffee INT NOT NULL,
-Eggs INT NOT NULL,
-FrozenB INT NOT NULL,
-BBarsPastries INT NOT NULL,
-FrozenJuice INT NOT NULL,
-Protein INT NOT NULL,
-Fruits INT NOT NULL,
-Granola INT NOT NULL,
-Foreign Key (OrderID) references OrderIDTable (OrderID)
-);
 
-LOAD DATA LOCAL INFILE '/Users/arridoarfiadi/Instacart_DataAnalytics/correlation/breakfast16.csv'
-INTO TABLE breakfast16
-FIELDS TERMINATED BY ','
-ENCLOSED BY '"'
-LINES TERMINATED BY '\n'
-IGNORE 1 ROWS;
 
 CREATE TABLE add2(
 OrderID INT NOT NULL,
@@ -243,13 +246,13 @@ ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-SELECT c1.OrderID, ifnull(sum(c1.OatmealPancakes),0), ifnull(sum(c1.SyrupHoney),0), ifnull(sum(c1.GranolaBars),0), ifnull(sum(c1.NutsSeeds),0),ifnull(sum(c1.Creamers),0),ifnull(sum(c1.CreamCheese),0),
-ifnull(sum(c1.Tea),0), ifnull(sum(c2.BaconSausage),0), ifnull(sum(c2.LactoseFree),0)
-FROM extra1 c1 left join add2 c2 on c1.OrderID = c2.OrderID group by OrderID
+SELECT c1.OrderID, ifnull(sum(distinct(c1.OatmealPancakes)),0), ifnull(sum(distinct(c1.SyrupHoney)),0), ifnull(sum(distinct(c1.GranolaBars)),0), ifnull(sum(distinct(c1.NutsSeeds)),0),ifnull(sum(distinct(c1.Creamers)),0),ifnull(sum(distinct(c1.CreamCheese)),0),
+ifnull(sum(distinct(c1.Tea)),0), ifnull(sum(distinct(c2.BaconSausage)),0), ifnull(sum(distinct(c2.LactoseFree)),0)
+FROM extra3 c1 left join add2 c2 on c1.OrderID = c2.OrderID group by OrderID
 union
-SELECT c2.OrderID, ifnull(sum(c1.OatmealPancakes),0), ifnull(sum(c1.SyrupHoney),0), ifnull(sum(c1.GranolaBars),0), ifnull(sum(c1.NutsSeeds),0),ifnull(sum(c1.Creamers),0),ifnull(sum(c1.CreamCheese),0),
-ifnull(sum(c1.Tea),0), ifnull(sum(c2.BaconSausage),0), ifnull(sum(c2.LactoseFree),0)
-FROM extra1 c1 right join add2 c2 on c1.OrderID = c2.OrderID group by OrderID;
+SELECT c2.OrderID, ifnull(sum(distinct(c1.OatmealPancakes)),0), ifnull(sum(distinct(c1.SyrupHoney)),0), ifnull(sum(distinct(c1.GranolaBars)),0), ifnull(sum(distinct(c1.NutsSeeds)),0),ifnull(sum(distinct(c1.Creamers)),0),ifnull(sum(distinct(c1.CreamCheese)),0),
+ifnull(sum(distinct(c1.Tea)),0), ifnull(sum(distinct(c2.BaconSausage)),0), ifnull(sum(distinct(c2.LactoseFree)),0)
+FROM extra3 c1 right join add2 c2 on c1.OrderID = c2.OrderID group by OrderID;
 
 CREATE TABLE extra4(
 OrderID INT NOT NULL,
