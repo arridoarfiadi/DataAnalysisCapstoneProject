@@ -9,6 +9,7 @@ Data Analysis project using dataset from Instacart and trying to answer the foll
 * How often does a consumer purchase? And how many items do they buy on average?
 * Which products are popular? Per department? Per aisle? 
 * What are common complimentary items department wise? Aisle wise?
+* Which grocers should Instacart consider partnering with?
 
 ## Purpose of Project
 This project is very interesting because we are utilizing everybit of technology to make better business decisions and analyze data. One of the well known intersection between computer science/technology and economics/business is data analysis, data science, and business intelligence. This project allows us to work on and gain experience in those areas. 
