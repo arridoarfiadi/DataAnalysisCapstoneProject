@@ -225,18 +225,4 @@ LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
 
-SELECT c1.OrderID, ifnull(c1.CookieCakes,0)CookieCakes, ifnull(c1.BakeryDesserts,0)BakeryDesserts, ifnull(c1.PuddingDesserts,0)PuddingDesserts, ifnull(c1.CandyChocolates,0)CandyChocolates,ifnull(c1.AppetizersSides,0)AppetizersSides,ifnull(c1.FrozenPizza,0)FrozenPizza,
-ifnull(c1.PreparedMeals,0)PreparedMeals,ifnull(c1.SoupsSalads ,0)SoupsSalads,
-ifnull(c1.ChipsPretzels,0)ChipsPretzels, ifnull(c1.Crackers,0)Crackers, ifnull(c1.PopcornJerky,0)PopcornJerky, ifnull(c1.DipsTapenades,0)DipsTapenades,ifnull(c1.DipsSpreads,0)DipsSpreads,
-ifnull(c1.Tableware,0)Tableware, ifnull(c1.Condiments,0)Condiments, ifnull(c1.BunsRolls,0)BunsRolls, ifnull(c1.SpecialtyCheeses,0)SpecialtyCheeses,
-ifnull(c2.WinesChampagnes,0)WinesChampagnes, ifnull(c2.BeersCoolers,0)BeersCoolers,ifnull(c2.Spirits ,0)Spirits, ifnull(c2.RedWines ,0)RedWines,
-ifnull(c2.DrinkMixes,0)DrinkMixes,ifnull(c2.SoftDrinks,0)SoftDrinks, ifnull(c2.Juice,0)Juice
-FROM firstAndSecond c1 left join third c2 on c1.OrderID = c2.OrderID group by OrderID
-union
-SELECT c2.OrderID, ifnull(c1.CookieCakes,0)CookieCakes, ifnull(c1.BakeryDesserts,0)BakeryDesserts, ifnull(c1.PuddingDesserts,0)PuddingDesserts, ifnull(c1.CandyChocolates,0)CandyChocolates,ifnull(c1.AppetizersSides,0)AppetizersSides,ifnull(c1.FrozenPizza,0)FrozenPizza,
-ifnull(c1.PreparedMeals,0)PreparedMeals,ifnull(c1.SoupsSalads ,0)SoupsSalads,
-ifnull(c1.ChipsPretzels,0)ChipsPretzels, ifnull(c1.Crackers,0)Crackers, ifnull(c1.PopcornJerky,0)PopcornJerky, ifnull(c1.DipsTapenades,0)DipsTapenades,ifnull(c1.DipsSpreads,0)DipsSpreads,
-ifnull(c1.Tableware,0)Tableware, ifnull(c1.Condiments,0)Condiments, ifnull(c1.BunsRolls,0)BunsRolls, ifnull(c1.SpecialtyCheeses,0)SpecialtyCheeses,
-ifnull(c2.WinesChampagnes,0)WinesChampagnes, ifnull(c2.BeersCoolers,0)BeersCoolers,ifnull(c2.Spirits ,0)Spirits, ifnull(c2.RedWines ,0)RedWines,
-ifnull(c2.DrinkMixes,0)DrinkMixes,ifnull(c2.SoftDrinks,0)SoftDrinks, ifnull(c2.Juice,0)Juice
-FROM firstAndSecond c1 right join third c2 on c1.OrderID = c2.OrderID group by OrderID;
+h

@@ -18,9 +18,11 @@ select cmy.OrderID OrderID, ifnull(cmy.Cereal_Amount, 0) Cereal_Amount, ifnull(c
 from CerealMilkYogurt cmy left JOIN Juice j on cmy.OrderID = j.OrderID
 
 create View BreadBBakery (OrderID, Bread, BBakery) as
-select bb.OrderID OrderID, ifnull(b.amount, 0) Bread, ifnull(bb.amount, 0) BBakery from Bread b right JOIN BreakfastBakery bb on b.OrderID = bb.OrderID
+select bb.OrderID OrderID, ifnull(b.amount, 0) Bread, ifnull(bb.amount, 0) BBakery
+from Bread b right JOIN BreakfastBakery bb on b.OrderID = bb.OrderID
 union
-select b.OrderID OrderID, ifnull(b.amount, 0) Bread, ifnull(bb.amount, 0) BBakery from Bread b left JOIN BreakfastBakery bb on b.OrderID = bb.OrderID;
+select b.OrderID OrderID, ifnull(b.amount, 0) Bread, ifnull(bb.amount, 0) BBakery
+from Bread b left JOIN BreakfastBakery bb on b.OrderID = bb.OrderID;
 
 create View BreadBBakeryButter (OrderID, Bread, BBakery, Butter) as
 select b.OrderID OrderID, ifnull(bb.Bread, 0) Bread, ifnull(bb.BBakery, 0) BBakery, ifnull(b.amount, 0) Butter from BreadBBakery bb right JOIN Butter b on bb.OrderID = b.OrderID
@@ -28,11 +30,13 @@ union
 select bb.OrderID OrderID, ifnull(bb.Bread, 0) Bread, ifnull(bb.BBakery, 0) BBakery, ifnull(b.amount, 0) Butter from BreadBBakery bb left JOIN Butter b on bb.OrderID = b.OrderID;
 
 
-create View BreadBBakeryButterSpreads (OrderID, Bread, BBakery, Butter,Spreads) as
-select s.OrderID OrderID, ifnull(bb.Bread, 0) Bread, ifnull(bb.BBakery, 0) BBakery, ifnull(bb.Butter, 0) Butter, ifnull(s.amount, 0) Spreads
+create View breakfastCorr2 (OrderID, Bread, BBakery, Butter,Spreads) as
+select s.OrderID OrderID, ifnull(bb.Bread, 0) Bread, ifnull(bb.BBakery, 0) BBakery,
+ifnull(bb.Butter, 0) Butter, ifnull(s.amount, 0) Spreads
 from BreadBBakeryButter bb right JOIN Spreads s on bb.OrderID = s.OrderID
 union
-select bb.OrderID OrderID, ifnull(bb.Bread, 0) Bread, ifnull(bb.BBakery, 0) BBakery, ifnull(bb.Butter, 0) Butter, ifnull(s.amount, 0) Spreads
+select bb.OrderID OrderID, ifnull(bb.Bread, 0) Bread, ifnull(bb.BBakery, 0) BBakery,
+ifnull(bb.Butter, 0) Butter, ifnull(s.amount, 0) Spreads
 from BreadBBakeryButter bb left JOIN Spreads s on bb.OrderID = s.OrderID;
 
 create View CoffeeEggs (OrderID, Coffee, Eggs) as

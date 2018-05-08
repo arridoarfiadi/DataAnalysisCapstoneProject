@@ -46,49 +46,44 @@ FOREIGN KEY (order_id) REFERENCES Orders(order_id),
 FOREIGN KEY (product_id) REFERENCES Products(product_id)
 );
 
-LOAD DATA LOCAL INFILE '/Users/arridoarfiadi/Downloads/DATA/Orders.csv' 
-INTO TABLE Orders 
-FIELDS TERMINATED BY ',' 
+LOAD DATA LOCAL INFILE '/Users/arridoarfiadi/Downloads/DATA/Orders.csv'
+INTO TABLE Orders
+FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA LOCAL INFILE '/Users/arridoarfiadi/Downloads/DATA/aisles.csv' 
-INTO TABLE Aisles 
-FIELDS TERMINATED BY ',' 
+LOAD DATA LOCAL INFILE '/Users/arridoarfiadi/Downloads/DATA/aisles.csv'
+INTO TABLE Aisles
+FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA LOCAL INFILE '/Users/arridoarfiadi/Downloads/DATA/departments.csv' 
-INTO TABLE Departments 
-FIELDS TERMINATED BY ',' 
+LOAD DATA LOCAL INFILE '/Users/arridoarfiadi/Downloads/DATA/departments.csv'
+INTO TABLE Departments
+FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA LOCAL INFILE '/Users/arridoarfiadi/Downloads/DATA/products.csv' 
-INTO TABLE Products 
-FIELDS TERMINATED BY ',' 
+LOAD DATA LOCAL INFILE '/Users/arridoarfiadi/Downloads/DATA/products.csv'
+INTO TABLE Products
+FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA LOCAL INFILE '/Users/arridoarfiadi/Downloads/DATA/order_products__train.csv' 
-INTO TABLE Order_Products 
-FIELDS TERMINATED BY ',' 
+LOAD DATA LOCAL INFILE '/Users/arridoarfiadi/Downloads/DATA/order_products__train.csv'
+INTO TABLE Order_Products
+FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA LOCAL INFILE '/Users/arridoarfiadi/Downloads/DATA/order_products__prior.csv' 
-INTO TABLE Order_Products 
-FIELDS TERMINATED BY ',' 
+LOAD DATA LOCAL INFILE '/Users/arridoarfiadi/Downloads/DATA/order_products__prior.csv'
+INTO TABLE Order_Products
+FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
-
-
-
-
-
