@@ -6,9 +6,9 @@ Created by:
 ## Intro 
 
 Data Analysis project using dataset from Instacart and trying to answer the following questions:
-* How often does a consumer purchase? And how many items do they buy on average?
+* How often does a consumer purchase and how can we increase that number?  
+* How many items do consumers buy on average and how can we increase that number? 
 * Which products are popular? Per department? Per aisle? 
-* What are common complimentary items department wise? Aisle wise?
 * Which grocers should Instacart consider partnering with?
 
 ## Purpose of Project
