@@ -22,14 +22,14 @@ union
 select fj.OrderID OrderID, ifnull(fj.amount, 0) AppetizersSides, ifnull(p.amount, 0) FrozenPizza from AppetizersSides fj left JOIN FrozenPizza p on fj.OrderID = p.OrderID;
 
 create View test4 (OrderID, AppetizersSides, FrozenPizza, PreparedMeals) as
-select ff.OrderID OrderID, ifnull(fp.AppetizersSides, 0) AppetizersSides, ifnull(fp.FrozenPizza, 0) FrozenPizza,  ifnull(ff.amount, 0) PreparedMeals from test1 fp right JOIN PreparedMeals ff on fp.OrderID = ff.OrderID
+select ff.OrderID OrderID, ifnull(fp.AppetizersSides, 0) AppetizersSides, ifnull(fp.FrozenPizza, 0) FrozenPizza,  ifnull(ff.amount, 0) PreparedMeals from test3 fp right JOIN PreparedMeals ff on fp.OrderID = ff.OrderID
 union
-select fp.OrderID OrderID, ifnull(fp.AppetizersSides, 0) AppetizersSides, ifnull(fp.FrozenPizza, 0) FrozenPizza,  ifnull(ff.amount, 0) PreparedMeals from test1 fp left JOIN PreparedMeals ff on fp.OrderID = ff.OrderID;
+select fp.OrderID OrderID, ifnull(fp.AppetizersSides, 0) AppetizersSides, ifnull(fp.FrozenPizza, 0) FrozenPizza,  ifnull(ff.amount, 0) PreparedMeals from test3 fp left JOIN PreparedMeals ff on fp.OrderID = ff.OrderID;
 
 create View Group2 (OrderID, AppetizersSides, FrozenPizza, PreparedMeals, SoupsSalads) as
-select g.OrderID OrderID, ifnull(fp.AppetizersSides, 0) AppetizersSides, ifnull(fp.FrozenPizza, 0) FrozenPizza,ifnull(fp.PreparedMeals, 0) PreparedMeals,  ifnull(g.amount, 0) SoupsSalads from test2 fp right JOIN SoupsSalads g on fp.OrderID = g.OrderID
+select g.OrderID OrderID, ifnull(fp.AppetizersSides, 0) AppetizersSides, ifnull(fp.FrozenPizza, 0) FrozenPizza,ifnull(fp.PreparedMeals, 0) PreparedMeals,  ifnull(g.amount, 0) SoupsSalads from test4 fp right JOIN SoupsSalads g on fp.OrderID = g.OrderID
 union
-select fp.OrderID OrderID, ifnull(fp.AppetizersSides, 0) AppetizersSides, ifnull(fp.FrozenPizza, 0) FrozenPizza,ifnull(fp.PreparedMeals, 0) PreparedMeals,  ifnull(g.amount, 0) SoupsSalads from test2 fp left JOIN SoupsSalads g on fp.OrderID = g.OrderID;
+select fp.OrderID OrderID, ifnull(fp.AppetizersSides, 0) AppetizersSides, ifnull(fp.FrozenPizza, 0) FrozenPizza,ifnull(fp.PreparedMeals, 0) PreparedMeals,  ifnull(g.amount, 0) SoupsSalads from test4 fp left JOIN SoupsSalads g on fp.OrderID = g.OrderID;
 
 create View test5 (OrderID, ChipsPretzels, Crackers) as
 select p.OrderID OrderID, ifnull(fj.amount, 0) ChipsPretzels, ifnull(p.amount, 0) Crackers from ChipsPretzels fj right JOIN Crackers p on fj.OrderID = p.OrderID

@@ -7,7 +7,8 @@ select op.order_id OrderID, p.product_name Product, op.add_to_cart_order Amount 
 where op.product_id = p.product_id and p.aisle_id in (select aisle_id from Aisles where aisle_name like "breakfast bakery");
 
 create view Butter (OrderID, Product, Amount) as
-select op.order_id OrderID, p.product_name Product, op.add_to_cart_order Amount from Order_Products op, Products p
+select op.order_id OrderID, p.product_name Product, op.add_to_cart_order Amount
+from Order_Products op, Products p
 where op.product_id = p.product_id and p.aisle_id in (select aisle_id from Aisles where aisle_name like "butter");
 
 create view Spreads (OrderID, Product, Amount) as
