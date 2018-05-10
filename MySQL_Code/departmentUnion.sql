@@ -8,7 +8,7 @@ select fb.OrderID OrderID, ifnull(ce.frozen, 0) frozen, ifnull(ce.other, 0) othe
 union
 select ce.OrderID OrderID, ifnull(ce.frozen, 0) frozen, ifnull(ce.other, 0) other,  ifnull(fb.amount, 0) bakery from test1 ce left JOIN bakery fb on ce.OrderID = fb.OrderID;
 
-create View departmentcorr1 (OrderID, frozen, other, bakery, produce) as
+create View Group1 (OrderID, frozen, other, bakery, produce) as
 select bbp.OrderID OrderID, ifnull(cef.frozen, 0) frozen, ifnull(cef.other, 0) other,  ifnull(cef.bakery, 0) bakery,  ifnull(bbp.amount, 0) produce
 from test2 cef right JOIN produce bbp on cef.OrderID = bbp.OrderID
 union

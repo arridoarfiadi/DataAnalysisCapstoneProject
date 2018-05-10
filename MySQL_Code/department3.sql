@@ -45,6 +45,8 @@ missing INT NOT NULL,
 Foreign Key (OrderID) references OrderIDTable (OrderID)
 );
 
+
+
 LOAD DATA LOCAL INFILE '/Users/arridoarfiadi/Instacart_DataAnalytics/correlation/Group1.csv'
 INTO TABLE Group1
 FIELDS TERMINATED BY ','
