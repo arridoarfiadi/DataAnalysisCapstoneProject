@@ -1,15 +1,15 @@
-#5/5/18
+#Author: Christine Nguyen
+#5/10/2018
+
+#Description - This code reads in total purchases per department
+#and reads it into a data frame. Then, we use the data frame to 
+#conduct correlation analysis amongst the 21 departments
 
 import pandas as pd 
+import matplotlib.pyplot as plt
+pd.options.display.max_columns = 50
+pd.options.display.max_rows = 50
 
-#pd.options.display.max_columns = 50
-#pd.options.display.max_rows = 50
-
-breakfast = pd.read_csv("breakfastComplete25.csv", index_col=0)
-party = pd.read_csv("party25.csv", index_col=0)
-
-#breakfast #displays the data for breakfast items
-#party #displays the data for party items
-
-breakfast.corr() #correlation martrix of breakfast items
-party.corr() #correlation matrix of party items
+departments = pd.read_csv("departmentCorr.csv", index_col=0)
+#departments
+departments.corr()
