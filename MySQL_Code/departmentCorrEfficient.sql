@@ -121,7 +121,7 @@ p.department_id in (select department_id from Departments where department_name 
 
 insert into departmentCorr (OrderID, deli)
 select op.order_id OrderID,   sum(op.add_to_cart_order) Amount from Order_Products op, Products p
-where op.product_id = p.product_id and 
+where op.product_id = p.product_id and
 p.department_id in (select department_id from Departments where department_name like "deli") group by OrderID order by OrderID;
 
 insert into departmentCorr (OrderID, missing)
@@ -130,15 +130,15 @@ where op.product_id = p.product_id and
 p.department_id in (select department_id from Departments where department_name like "missing") group by OrderID order by OrderID;
 
 
-select g.orderid OrderID, ifnull(sum(distinct(g.frozen )),0),
-ifnull(sum(distinct(g.other )),0), ifnull(sum(distinct(g.bakery )),0),
-ifnull(sum(distinct(g.produce )),0), ifnull(sum(distinct(g.alcohol )),0),
-ifnull(sum(distinct(g.international )),0), ifnull(sum(distinct(g.beverages )),0),
-ifnull(sum(distinct(g.pets )),0), ifnull(sum(distinct(g.dryGoodsPasta )),0),
-ifnull(sum(distinct(g.bulk )),0), ifnull(sum(distinct(g.personalCare )),0),
-ifnull(sum(distinct(g.meatSeafood )),0), ifnull(sum(distinct(g.pantry )),0),
-ifnull(sum(distinct(g.breakfast )),0), ifnull(sum(distinct(g.cannedGoods )),0),
-ifnull(sum(distinct(g.dairyEggs )),0), ifnull(sum(distinct(g.household )),0),
-ifnull(sum(distinct(g.babies )),0), ifnull(sum(distinct(g.snacks )),0),
-ifnull(sum(distinct(g.deli )),0), ifnull(sum(distinct(g.missing )),0),
+select g.orderid OrderID, ifnull(sum(distinct(g.frozen )),0) Frozen,
+ifnull(sum(distinct(g.other )),0) Others , ifnull(sum(distinct(g.bakery )),0) Bakery,
+ifnull(sum(distinct(g.produce )),0) Produce, ifnull(sum(distinct(g.alcohol )),0) Alcohol,
+ifnull(sum(distinct(g.international )),0) International , ifnull(sum(distinct(g.beverages )),0) Beverages ,
+ifnull(sum(distinct(g.pets )),0) Pets , ifnull(sum(distinct(g.dryGoodsPasta )),0) DryGoodsPasta,
+ifnull(sum(distinct(g.bulk )),0) Bulk, ifnull(sum(distinct(g.personalCare )),0) PersonalCare,
+ifnull(sum(distinct(g.meatSeafood )),0)MeatSeafood, ifnull(sum(distinct(g.pantry )),0) Pantry,
+ifnull(sum(distinct(g.breakfast )),0) Breakfast, ifnull(sum(distinct(g.cannedGoods )),0) CannedGoods,
+ifnull(sum(distinct(g.dairyEggs )),0) DairyEggs, ifnull(sum(distinct(g.household )),0) Household,
+ifnull(sum(distinct(g.babies )),0) Babies , ifnull(sum(distinct(g.snacks )),0) Snacks,
+ifnull(sum(distinct(g.deli )),0) Deli, ifnull(sum(distinct(g.missing )),0) Missing
 from departmentCorr g  group by OrderID order by OrderID;
