@@ -1,0 +1,21 @@
+itself,weak,strong,strong,weak,average,strong,weak,strong,weak,average,strong,strong,strong,strong,strong,average,average,strong,strong,average
+weak,itself,weak,weak,weak,weak,weak,weak,weak,weak,weak,weak,weak,weak,weak,weak,weak,weak,weak,weak,weak
+strong,weak,itself,strong,weak,average,strong,weak,strong,weak,average,strong,strong,strong,strong,strong,average,weak,strong,strong,weak
+strong,weak,strong,itself,weak,strong,strong,weak,strong,average,average,strong,strong,average,strong,strong,average,average,strong,strong,average
+weak,weak,weak,weak,itself,weak,weak,weak,weak,no corr,weak,weak,weak,weak,weak,weak,weak,no corr,weak,weak,weak
+average,weak,average,strong,weak,itself,average,weak,average,weak,weak,average,average,average,average,average,weak,weak,average,average,weak
+strong,weak,strong,strong,weak,average,itself,weak,average,weak,average,average,strong,strong,average,strong,average,weak,strong,strong,weak
+weak,weak,weak,weak,weak,weak,weak,itself,weak,no corr,weak,weak,weak,weak,weak,weak,weak,weak,weak,weak,weak
+strong,weak,strong,strong,weak,average,average,weak,itself,weak,average,strong,strong,average,strong,strong,average,average,average,average,weak
+weak,weak,weak,average,no corr,weak,weak,no corr,weak,itself,weak,weak,weak,weak,weak,weak,weak,weak,weak,weak,weak
+average,weak,average,average,weak,weak,average,weak,average,weak,itself,average,average,average,average,average,average,weak,average,average,weak
+strong,weak,strong,strong,weak,average,average,weak,strong,weak,average,itself,strong,average,average,strong,average,weak,average,average,weak
+strong,weak,strong,strong,weak,average,strong,weak,strong,weak,average,strong,itself,strong,strong,strong,average,weak,strong,strong,weak
+strong,weak,strong,average,weak,average,strong,weak,average,weak,average,average,strong,itself,average,strong,average,weak,strong,average,weak
+strong,weak,strong,strong,weak,average,average,weak,strong,weak,average,average,strong,average,itself,strong,average,weak,average,average,weak
+strong,weak,strong,strong,weak,average,strong,weak,strong,weak,average,strong,strong,strong,strong,itself,average,average,strong,strong,average
+average,weak,average,average,weak,weak,average,weak,average,weak,average,average,average,average,average,average,itself,weak,average,average,weak
+average,weak,weak,average,no corr,weak,weak,weak,average,weak,weak,weak,weak,weak,weak,average,weak,itself,average,weak,weak
+strong,weak,strong,strong,weak,average,strong,weak,average,weak,average,average,strong,strong,average,strong,average,average,itself,strong,average
+strong,weak,strong,strong,weak,average,strong,weak,average,weak,average,average,strong,average,average,strong,average,weak,strong,itself,weak
+average,weak,weak,average,weak,weak,weak,weak,weak,weak,weak,weak,weak,weak,weak,average,weak,weak,average,weak,itself
