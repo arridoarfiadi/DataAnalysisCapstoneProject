@@ -66,15 +66,15 @@ def dictionaryHelper(deptsInAnOrder,i,headers):
                     numOfAverage+=1
                 elif corr == "strong":
                     numOfStrong+=1
-corrDepartmentOfOrder.append(orderNum)
-corrDepartmentOfOrder.append(numOfNoCorr)
-corrDepartmentOfOrder.append(numOfWeak)
-corrDepartmentOfOrder.append(numOfAverage)
-corrDepartmentOfOrder.append(numOfStrong)
-print(corrDepartmentOfOrder)
-with open('corrDepartmentOfOrder.csv', 'a') as file:
-    writer = csv.writer(file, delimiter=',', lineterminator='\n')
-    writer.writerow(corrDepartmentOfOrder)
+    corrDepartmentOfOrder.append(orderNum)
+    corrDepartmentOfOrder.append(numOfNoCorr)
+    corrDepartmentOfOrder.append(numOfWeak)
+    corrDepartmentOfOrder.append(numOfAverage)
+    corrDepartmentOfOrder.append(numOfStrong)
+    print(corrDepartmentOfOrder)
+    with open('corrDepartmentOfOrder.csv', 'a') as file:
+        writer = csv.writer(file, delimiter=',', lineterminator='\n')
+        writer.writerow(corrDepartmentOfOrder)
 
 
 def getAllOrders(departmentsInOrder,headers):
