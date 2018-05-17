@@ -1,4 +1,4 @@
-# Grocery Business Data Analysis
+# Using Data Analytics to Predict Consumer Behavior: An Executive Approach
 Created by:
 * Arrido Arfiadi
 * Christine Nguyen
