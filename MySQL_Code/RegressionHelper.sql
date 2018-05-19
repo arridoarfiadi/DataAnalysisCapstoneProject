@@ -1,4 +1,4 @@
-CREATE TABLE departmentCorr(
+CREATE TABLE orderDepCorr(
 OrderID INT NOT NULL,
 numOfNoCorr INT NOT NULL,
 numOfWeak INT NOT NULL,
@@ -16,7 +16,7 @@ Foreign Key (OrderID) references OrderIDTable (OrderID)
 );
 
 LOAD DATA LOCAL INFILE '/Users/arridoarfiadi/Instacart_DataAnalytics/Regression Analysis/csv_files/corrDepartmentOfOrder.csv'
-INTO TABLE departmentCorr
+INTO TABLE orderDepCorr
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n';
@@ -29,17 +29,17 @@ LINES TERMINATED BY '\n';
 
 CREATE TABLE RegressionDataset1(
 OrderID INT NOT NULL,
-itemOnOrder INT NOT NULL,
-numOfReOrdered INT NOT NULL,
-numOfShort INT NOT NULL,
-numOfNormal INT NOT NULL,
-numOfLong INT NOT NULL,
-numOfNoCorr INT NOT NULL,
-numOfWeak INT NOT NULL,
-numOfAverage INT NOT NULL,
-numOfStrong INT NOT NULL,
-dayOfTheWeek INT NOT NULL,
-hourOfTheDay INT NOT NULL,
+itemOnOrder INT,
+numOfReOrdered INT,
+numOfShort INT,
+numOfNormal INT,
+numOfLong INT,
+numOfNoCorr INT,
+numOfWeak INT,
+numOfAverage INT,
+numOfStrong INT,
+dayOfTheWeek INT,
+hourOfTheDay INT,
 Foreign Key (OrderID) references OrderIDTable (OrderID)
 );
 
@@ -58,7 +58,7 @@ group by OrderID order by OrderID;
 
 insert into RegressionDataset1(OrderID,numOfShort,numOfNormal,numOfLong,numOfNoCorr,numOfWeak,numOfAverage,numOfStrong)
 select n.OrderID, n.numOfShort,n.numOfNormal,n.numOfLong,c.numOfNoCorr,c.numOfWeak,c.numOfAverage,c.numOfStrong
-from orderNature n,departmentCorr c
+from orderNature n,orderDepCorr c
 where n.orderid = c.orderid
 group by OrderID order by OrderID;
 
