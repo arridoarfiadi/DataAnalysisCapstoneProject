@@ -30,42 +30,32 @@ LINES TERMINATED BY '\n';
 CREATE TABLE RegressionDataset1(
 OrderID INT NOT NULL,
 itemOnOrder INT,
+Foreign Key (OrderID) references OrderIDTable (OrderID)
+);
+
+CREATE TABLE RegressionDataset2(
+OrderID INT NOT NULL,
 numOfReOrdered INT,
-numOfShort INT,
-numOfNormal INT,
-numOfLong INT,
-numOfNoCorr INT,
-numOfWeak INT,
-numOfAverage INT,
-numOfStrong INT,
-dayOfTheWeek INT,
-hourOfTheDay INT,
 Foreign Key (OrderID) references OrderIDTable (OrderID)
 );
 
 insert into RegressionDataset1(OrderID, itemOnOrder)
-select op.order_id OrderID,   sum(op.product_id) itemOnOrder from Order_Products op
+select op.order_id OrderID,   count(op.product_id) itemOnOrder from Order_Products op
 group by OrderID order by OrderID;
 
 
-insert into RegressionDataset1(OrderID, numOfReOrdered) 
-select op.order_id OrderID, count(op.reordered) numOfReOrdered from Order_Products op
+insert into RegressionDataset2(OrderID, numOfReOrdered) 
+select op.order_id OrderID, sum(op.reordered) numOfReOrdered from Order_Products op
 group by OrderID order by OrderID;
 
-insert into RegressionDataset1(OrderID, dayOfTheWeek, hourOfTheDay) 
-select o.order_id OrderID, o.dow, o.order_hour_of_day from Orders o
+select n.OrderID OrderID, o.order_dow dayOfTheWeek, o.order_hour_of_day hourOfTheDay, rd1.itemOnOrder itemOnOrder, 
+n.numOfShort numOfShort,n.numOfNormal,n.numOfLong numOfLong,
+c.numOfNoCorr numOfNoCorr,c.numOfWeak numOfWeak,c.numOfAverage numOfAverage,c.numOfStrong numOfStrong, 
+rd2.numOfReOrdered numOfReOrdered
+from RegressionDataset1 rd1,RegressionDataset2 rd2, orders o, ordernature n, orderDepCorr c
+where n.orderid= c.orderid and n.orderid = o.Order_ID and n.orderid = rd1.orderid and n.orderid = rd2.orderid
+and o.order_id = c.orderid and o.order_id = rd1.OrderID and o.order_id =rd2.orderid 
+and c.orderid = rd1.orderid and c.orderid =rd2.orderid
+and rd1.OrderID = rd2.orderid
 group by OrderID order by OrderID;
 
-insert into RegressionDataset1(OrderID,numOfShort,numOfNormal,numOfLong,numOfNoCorr,numOfWeak,numOfAverage,numOfStrong)
-select n.OrderID, n.numOfShort,n.numOfNormal,n.numOfLong,c.numOfNoCorr,c.numOfWeak,c.numOfAverage,c.numOfStrong
-from orderNature n,orderDepCorr c
-where n.orderid = c.orderid
-group by OrderID order by OrderID;
-
-
-select r.OrderID OrderID, r.dayOfTheWeek dayOfTheWeek, r.hourOfTheDay hourOfTheDay,r.itemOnOrder itemOnOrder, 
-r.numOfShort numOfShort,r.numOfNormal,r.numOfLong numOfLong,
-r.numOfNoCorr numOfNoCorr,r.numOfWeak numOfWeak,r.numOfAverage numOfAverage,r.numOfStrong numOfStrong, 
-r.numOfReOrdered numOfReOrdered
-from RegressionDataset1 r
-group by OrderID order by OrderID;
