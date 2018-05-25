@@ -24,10 +24,12 @@ missing INT  ,
 Foreign Key (OrderID) references OrderIDTable (OrderID)
 );
 
-insert into departmentCorr (OrderID, frozen)
+insert into departmentCorr (OrderID, frozen) #Storing the value in the table
 select op.order_id OrderID,   sum(op.add_to_cart_order) Amount from Order_Products op, Products p
 where op.product_id = p.product_id and
-p.department_id in (select department_id from Departments where department_name like "frozen") group by OrderID order by OrderID;
+p.department_id in (select department_id from Departments where department_name like "frozen")
+group by OrderID order by OrderID;
+
 
 insert into departmentCorr (OrderID, other)
 select op.order_id OrderID,   sum(op.add_to_cart_order) Amount from Order_Products op, Products p
@@ -142,3 +144,11 @@ ifnull(sum(distinct(g.dairyEggs )),0) DairyEggs, ifnull(sum(distinct(g.household
 ifnull(sum(distinct(g.babies )),0) Babies , ifnull(sum(distinct(g.snacks )),0) Snacks,
 ifnull(sum(distinct(g.deli )),0) Deli, ifnull(sum(distinct(g.missing )),0) Missing
 from departmentCorr g  group by OrderID order by OrderID;
+
+
+CREATE TABLE departmentCorr(
+OrderID INT NOT NULL ,
+departmen_name Varchar[255],
+amount Int,
+Foreign Key (OrderID) references OrderIDTable (OrderID)
+);
